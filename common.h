@@ -12,6 +12,7 @@
 #error "sorry, x86_64 not implemented yet!"
 // warning: only use inside of _start
 #	define getargs(argc, argv) ((void) 0)
+#else
 #error "only x86 and x86_64 are supported"
 #endif
 
