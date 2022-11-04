@@ -2,10 +2,14 @@
 CC?=cc
 LINKER?=cc
 
-OBJPATH?=objects
-BINPATH?=binaries
-SRCPATH?=sources
-INCPATH?=include
+OBJPATH=objects
+BINPATH=binaries
+SRCPATH=sources
+INCPATH=include
+
+OPTLEVEL?=0
+EXTRAFLAGS?=
+LINKERFLAGS?=-g
 
 programs := echo
 
@@ -18,14 +22,14 @@ $(BINPATH):
 	mkdir $@
 
 $(programs): $(OBJPATH)/syscalls.o $(OBJPATH)/string.o
-	$(CC) -nostdlib -nostdinc -I./$(INCPATH)/ -c -Os -o $(OBJPATH)/$@.o $(SRCPATH)/$@.c
-	$(LINKER) -nostdlib -s -o $(BINPATH)/$@ $(OBJPATH)/$@.o $(OBJPATH)/string.o $(OBJPATH)/syscalls.o
+	$(CC) $(EXTRAFLAGS) -nostdlib -nostdinc -I./$(INCPATH)/ -c -O$(OPTLEVEL) -o $(OBJPATH)/$@.o $(SRCPATH)/$@.c
+	$(LINKER) $(LINKERFLAGS) -nostdlib -o $(BINPATH)/$@ $(OBJPATH)/$@.o $(OBJPATH)/string.o $(OBJPATH)/syscalls.o
 
 $(OBJPATH)/syscalls.o:
-	$(CC) -nostdlib -c -o $@ $(SRCPATH)/syscalls/syscalls_`uname -m`.s
+	$(CC) $(EXTRAFLAGS) -nostdlib -c -o $@ $(SRCPATH)/syscalls/syscalls_`uname -m`.s
 
 $(OBJPATH)/string.o:
-	$(CC) -nostdlib -nostdinc -c -Os -o $@ $(SRCPATH)/string.c
+	$(CC) $(EXTRAFLAGS) -nostdlib -nostdinc -c -O$(OPTLEVEL) -o $@ $(SRCPATH)/string.c
 
 clean:
 	rm -r $(OBJPATH)/ $(BINPATH)/
