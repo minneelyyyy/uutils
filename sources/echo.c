@@ -12,13 +12,12 @@ void _start(void) {
 
 	if (argc > 1 && strequ(argv[1], "-n")) show_newline = 0;
 
-	for (i = !show_newline + 1; i < argc; i++) {
+	for (i = !show_newline + 1; i < argc - 1; i++) {
 		sys_write(1, argv[i], strlen(argv[i]));
-
-		if (i + 1 < argc) {
-			sys_write(1, " ", 1);
-		}
+		sys_write(1, " ", 1);
 	}
+
+	sys_write(1, argv[argc - 1], strlen(argv[argc - 1]));
 
 	if (show_newline) {
 		sys_write(1, "\n", sizeof("\n"));
