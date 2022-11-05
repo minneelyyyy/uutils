@@ -1,4 +1,4 @@
-# Tiny FreeBSD Utilities
+# μutils
 
 #### This is a collection of POSIX utilities for FreeBSD. They are all static binaries that do not rely on LIBC at all. This contributes to their small size.
 
