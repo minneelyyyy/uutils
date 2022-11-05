@@ -12,8 +12,8 @@
 // warning: only use inside of _start
 #	define getargs(argc, argv)\
 		do {\
-			asm("movl 0x8(%%rbp), %0" : "=r" (argc));\
-			asm("leaq 0x12(%%rbp), %0" : "=r" (argv));\
+			asm("movl (%%rdi), %0" : "=r" (argc));\
+			asm("leaq 8(%%rdi), %0" : "=r" (argv));\
 		} while (0)
 #else
 #error "only x86 and x86_64 are supported"
