@@ -17,7 +17,7 @@ void _start(void) {
 		sys_write(1, " ", 1);
 	}
 
-	sys_write(1, argv[argc - 1], strlen(argv[argc - 1]));
+	if (argc > 2) sys_write(1, argv[i], strlen(argv[i]));
 
 	if (show_newline) {
 		sys_write(1, "\n", sizeof("\n"));
