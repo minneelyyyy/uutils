@@ -29,7 +29,7 @@ $(OBJPATH)/syscalls.o:
 	$(CC) $(EXTRAFLAGS) -nostdlib -c -o $@ $(SRCPATH)/syscalls/syscalls_`uname -m`.s
 
 $(OBJPATH)/string.o:
-	$(CC) $(EXTRAFLAGS) -nostdlib -nostdinc -I./$(INCPATH)/ -c -O$(OPTLEVEL) -o $@ $(SRCPATH)/string.c
+	$(CC) $(EXTRAFLAGS) -nostdlib -nostdinc -I./$(INCPATH)/ -c -O$(OPTLEVEL) -o $@ $(SRCPATH)/commonlib/string.c
 
 clean:
 	rm -r $(OBJPATH)/ $(BINPATH)/
