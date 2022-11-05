@@ -8,7 +8,7 @@ SRCPATH=sources
 INCPATH=include
 
 OPTLEVEL?=0
-EXTRAFLAGS?=
+EXTRAFLAGS?=-g
 LINKERFLAGS?=-g
 
 programs := echo
