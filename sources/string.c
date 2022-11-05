@@ -1,6 +1,7 @@
+#include <common.h>
 
-unsigned int strlen(const char* str) {
-	unsigned int len = 0;
+size_t strlen(const char* str) {
+	size_t len = 0;
 
 	while (str[len] != 0) len++;
 
