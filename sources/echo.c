@@ -19,9 +19,7 @@ void _start(void) {
 
 	if (argc > 2) sys_write(1, argv[i], strlen(argv[i]));
 
-	if (show_newline) {
-		sys_write(1, "\n", sizeof("\n"));
-	}
+	if (show_newline) sys_write(1, "\n", sizeof("\n"));
 
 	sys_exit(0);
 }
