@@ -2,7 +2,7 @@
 #define __COMMON_H
 
 #if defined(__i386__)
-// warning: only use inside of _start
+/* warning: only use inside of _start */
 #	define getargs(argc, argv)					\
 		do {							\
 			asm("movl 0x4(%%ebp), %0" : "=r" (argc));	\
@@ -12,7 +12,7 @@
 typedef unsigned int size_t;
 typedef signed int ssize_t;
 #elif defined(__x86_64__)
-// warning: only use inside of _start, run before any other code
+/* warning: only use inside of _start, run before any other code */
 #	define getargs(argc, argv)				\
 		do {						\
 			asm("movl (%%rdi), %0" : "=r" (argc));	\
