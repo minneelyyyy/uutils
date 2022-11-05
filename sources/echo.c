@@ -1,14 +1,9 @@
 #include <common.h>
 #include <string.h>
 
-void _start(void) {
-	int argc;
-	char** argv;
-
+int main(int argc, char** argv) {
 	int i;
 	int show_newline = 1;
-
-	getargs(argc, argv);
 
 	if (argc > 1 && strequ(argv[1], "-n")) show_newline = 0;
 
@@ -21,5 +16,5 @@ void _start(void) {
 
 	if (show_newline) sys_write(1, "\n", sizeof("\n"));
 
-	sys_exit(0);
+	return 0;
 }
