@@ -11,7 +11,7 @@ OPTLEVEL?=0
 EXTRAFLAGS?=-g
 LINKERFLAGS?=-g
 
-programs := echo
+programs := echo true false
 
 all: $(OBJPATH) $(BINPATH) $(programs)
 
@@ -40,4 +40,4 @@ $(OBJPATH)/string.o:
 		-c -O$(OPTLEVEL) -o $@ $(SRCPATH)/commonlib/string.c
 
 clean:
-	rm -r $(OBJPATH)/ $(BINPATH)/
+	rm -r -f $(OBJPATH)/ $(BINPATH)/
