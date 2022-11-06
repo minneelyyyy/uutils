@@ -1,12 +1,14 @@
 # μutils
 
-#### This is a collection of POSIX utilities for FreeBSD. They are all static binaries that do not rely on LIBC at all. This contributes to their small size.
+This is a collection of POSIX utilities for FreeBSD.
+They are all static binaries that do not rely on LIBC at all.
+This contributes to their small size.
 
 ## Usage
 You can use these programs freely and are allowed to copy, change,
 and distribute as both code and binaries. Here are a few instructions
-to make this program yours. Read `LICENSE` for more information about
-copying.
+to make this program yours.
+Read `LICENSE` for more information about copying.
 
 ### Compiling
 These programs can be compiled simply with `make`.
