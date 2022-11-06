@@ -11,7 +11,7 @@ OPTLEVEL?=0
 EXTRAFLAGS?=-g
 LINKERFLAGS?=-g
 
-programs := echo true false
+programs := echo true false yes
 
 all: $(OBJPATH) $(BINPATH) $(programs)
 
