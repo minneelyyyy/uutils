@@ -12,7 +12,8 @@ int main(int argc, char** argv) {
 		sys_write(1, " ", 1);
 	}
 
-	if (argc > 2) sys_write(1, argv[i], strlen(argv[i]));
+	if (argc > 1 && show_newline)
+		sys_write(1, argv[i], strlen(argv[i]));
 
 	if (show_newline) sys_write(1, "\n", sizeof("\n"));
 
