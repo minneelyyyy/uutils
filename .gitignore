@@ -1,3 +1,2 @@
-binaries/
-objects/
 *.core
+**/*.o

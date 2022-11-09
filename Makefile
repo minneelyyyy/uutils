@@ -1,43 +1,33 @@
 
-CC?=cc
-LINKER?=cc
+CC=cc
 
-OBJPATH=objects
-BINPATH=binaries
-SRCPATH=sources
-INCPATH=include
+PROGS=echo true false yes
+OBJS=src/_start.o src/commonlib/string.o \
+     src/echo.o src/true.o src/false.o src/yes.o
 
 OPTLEVEL?=0
 EXTRAFLAGS?=-g
-LINKERFLAGS?=-g
+LINKERFLAGS=-g
 
-programs := echo true false yes
+.SUFFIXES: .c .s .o
+.PHONY: all clean
 
-all: $(OBJPATH) $(BINPATH) $(programs)
+all: $(PROGS)
 
-$(OBJPATH):
-	mkdir $@
+.c.o:
+	$(CC) -O$(OPTLEVEL) $(EXTRAFLAGS) -nostdlib -nostdinc -c -Iinclude $< -o $@
 
-$(BINPATH):
-	mkdir $@
+.s.o:
+	$(CC) $(EXTRAFLAGS) -nostdlib -c $< -o $@
 
-$(programs): $(OBJPATH)/_start.o $(OBJPATH)/syscalls.o $(OBJPATH)/string.o
-	$(CC) $(EXTRAFLAGS) -nostdlib -nostdinc -I./$(INCPATH)/ -c \
-		-O$(OPTLEVEL) -o $(OBJPATH)/$@.o $(SRCPATH)/$@.c
-	$(LINKER) $(LINKERFLAGS) -nostdlib -o $(BINPATH)/$@ $(OBJPATH)/$@.o \
-		$(OBJPATH)/_start.o $(OBJPATH)/string.o $(OBJPATH)/syscalls.o
+$(PROGS): src/syscalls/syscalls.o $(OBJS)
+	@mkdir -p ./bin
+	$(CC) $(LINKERFLAGS) -nostdlib -o $@ src/$@.o src/_start.o \
+		src/syscalls/syscalls.o src/commonlib/string.o
+	@mv $@ bin/$@
 
-$(OBJPATH)/_start.o:
-	$(CC) $(EXTRAFLAGS) -nostdlib -nostdinc -I./$(INCPATH)/ \
-		-c -O$(OPTLEVEL) -o $@ $(SRCPATH)/_start.c
-
-$(OBJPATH)/syscalls.o:
-	$(CC) $(EXTRAFLAGS) -nostdlib -c \
-		-o $@ $(SRCPATH)/syscalls/syscalls_`uname -m`.s
-
-$(OBJPATH)/string.o:
-	$(CC) $(EXTRAFLAGS) -nostdlib -nostdinc -I./$(INCPATH)/ \
-		-c -O$(OPTLEVEL) -o $@ $(SRCPATH)/commonlib/string.c
+src/syscalls/syscalls.o:
+	$(CC) $(EXTRAFLAGS) -nostdlib -c -o $@ src/syscalls/syscalls_`uname -m`.s
 
 clean:
-	rm -r -f $(OBJPATH)/ $(BINPATH)/
+	rm -r -f $(OBJS) bin src/syscalls/syscalls.o
