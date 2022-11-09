@@ -19,7 +19,7 @@ If you want other custom command line arguments there are three variables
 to remember: `EXTRAFLAGS`, `LINKERFLAGS`, and `OPTLEVEL`.
 
 `EXTRAFLAGS` gets passed to the compiler (specified with `CC`).
-`LINKERFLAGS` gets passed to the linker (specified with `LINKER`),
+`LINKERFLAGS` gets passed to the linker (specified with `LD`),
 and `OPTLEVEL` is just for the -O flag.
 
 ### How to Get the Smallest Binaries Possible
@@ -27,7 +27,7 @@ Different combinations of compilers and linkers may provide the best possible
 binary sizes. For example, on my system clang produces the smallest objects
 and gcc can link them together and get the smallest executable.
 Try playing with different combinations on your system.
-`CC` specifies the compiler (source -> objects) and `LINKER` specifies
+`CC` specifies the compiler (source -> objects) and `LD` specifies
 linker (objects -> executables).
 
 ### Installing
