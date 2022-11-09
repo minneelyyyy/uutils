@@ -33,4 +33,4 @@ linker (objects -> executables).
 ### Installing
 It might not be a good idea to replace system utilities with these in their
 current state, because of this there is no `make install` option.
-Just copy files from `binaries/` to your designated install location if you wish.
+Just copy files from `bin/` to your designated install location if you wish.
