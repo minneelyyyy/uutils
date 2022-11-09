@@ -1,5 +1,6 @@
 
-CC=cc
+CC?=cc
+LD?=ld
 
 PROGS=echo true false yes
 OBJS=src/_start.o src/commonlib/string.o \
@@ -22,7 +23,7 @@ all: $(PROGS)
 
 $(PROGS): src/syscalls/syscalls.o $(OBJS)
 	@mkdir -p ./bin
-	$(CC) $(LINKERFLAGS) -nostdlib -o $@ src/$@.o src/_start.o \
+	$(LD) $(LINKERFLAGS) -nostdlib -o $@ src/$@.o src/_start.o \
 		src/syscalls/syscalls.o src/commonlib/string.o
 	@mv $@ bin/$@
 
