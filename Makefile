@@ -8,16 +8,13 @@ OPTLEVEL?=0
 EXTRAFLAGS?=-g
 LINKERFLAGS=-g
 
-.SUFFIXES: .c .s .o
+.SUFFIXES: .c .o
 .PHONY: all clean
 
 all: $(PROGS)
 
 .c.o:
 	$(CC) -O$(OPTLEVEL) $(EXTRAFLAGS) -nostdlib -nostdinc -c -Iinclude $< -o $@
-
-.s.o:
-	$(AS) $< -o $@
 
 $(PROGS): src/syscalls/syscalls.o $(OBJS)
 	@mkdir -p ./bin
