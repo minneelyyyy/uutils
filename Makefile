@@ -1,9 +1,7 @@
 
-CC?=cc
-LD?=ld
-
 PROGS=echo true false yes
-OBJS=src/_start.o src/commonlib/string.o \
+COMMON_OBJS=src/_start.o src/commonlib/string.o src/commonlib/bufio.o src/syscalls/syscalls.o
+OBJS=$(COMMON_OBJS) \
      src/echo.o src/true.o src/false.o src/yes.o
 
 OPTLEVEL?=0
@@ -19,16 +17,15 @@ all: $(PROGS)
 	$(CC) -O$(OPTLEVEL) $(EXTRAFLAGS) -nostdlib -nostdinc -c -Iinclude $< -o $@
 
 .s.o:
-	$(CC) $(EXTRAFLAGS) -nostdlib -c $< -o $@
+	$(AS) $< -o $@
 
 $(PROGS): src/syscalls/syscalls.o $(OBJS)
 	@mkdir -p ./bin
-	$(LD) $(LINKERFLAGS) -nostdlib -o $@ src/$@.o src/_start.o \
-		src/syscalls/syscalls.o src/commonlib/string.o
+	$(LD) $(LINKERFLAGS) -nostdlib -o $@ src/$@.o $(COMMON_OBJS)
 	@mv $@ bin/$@
 
 src/syscalls/syscalls.o:
-	$(CC) $(EXTRAFLAGS) -nostdlib -c -o $@ src/syscalls/syscalls_`uname -m`.s
+	$(AS) -o $@ src/syscalls/syscalls_`uname -m`.s
 
 clean:
 	rm -r -f $(OBJS) bin src/syscalls/syscalls.o

@@ -10,3 +10,10 @@ sys_exit:
 	mov $1, %eax
 	int $0x80
 
+
+.global sys_fcntl
+sys_fcntl:
+	mov $92, %eax
+	int $0x80
+	ret
+

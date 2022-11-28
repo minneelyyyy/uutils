@@ -10,3 +10,10 @@ sys_exit:
 	mov $1, %rax
 	syscall
 
+
+.global sys_fcntl
+sys_fcntl:
+	mov $92, %rax
+	syscall
+	ret
+
