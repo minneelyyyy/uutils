@@ -21,11 +21,10 @@ all: $(PROGS)
 
 $(PROGS): src/syscalls/syscalls.o $(OBJS)
 	@mkdir -p ./bin
-	$(LD) $(LINKERFLAGS) -nostdlib -o $@ src/$@.o $(COMMON_OBJS)
-	@mv $@ bin/$@
+	$(LD) $(LINKERFLAGS) -nostdlib -o bin/$@ src/$@.o $(COMMON_OBJS)
 
 src/syscalls/syscalls.o:
 	$(AS) -o $@ src/syscalls/syscalls_`uname -m`.s
 
 clean:
-	rm -r -f $(OBJS) bin src/syscalls/syscalls.o
+	rm -r -f $(OBJS) bin/ src/syscalls/syscalls.o
