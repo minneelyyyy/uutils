@@ -53,4 +53,4 @@ $(PROGS): src/$@.o $(OBJS)
 	$(LD) $(LDFLAGS) -nostdlib -o bin/$@ src/$@.o  $(OBJS)
 ```
 
-This will put the binaries in their own neat little folder, which you can then copy them easily from.
+Then `mkdir bin`. This will put the binaries in their own neat little folder, which you can then copy them easily from.
