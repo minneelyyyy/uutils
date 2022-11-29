@@ -1,3 +1,9 @@
+# object files and core dumps
 *.core
 **/*.o
-bin/
+
+# programs
+echo
+yes
+true
+false
