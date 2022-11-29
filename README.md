@@ -45,11 +45,11 @@ If you REALLY want to install these, the easist way would be to make just one qu
 to the Makefile. go to the $(PROGS) rule, and replace the following line.
 
 ```make
-$(PROGS): src/$@.o $(OBJS)
+$(PROGS): $(OBJS) src/$@.o
 	$(LD) $(LDFLAGS) -nostdlib -o $@ src/$@.o $(OBJS)
 ```
 ```make
-$(PROGS): src/$@.o $(OBJS)
+$(PROGS): $(OBJS) src/$@.o
 	$(LD) $(LDFLAGS) -nostdlib -o bin/$@ src/$@.o  $(OBJS)
 ```
 
