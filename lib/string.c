@@ -1,9 +1,9 @@
 #include <common.h>
 
-#if defined(__i386__)
+#if WORDSIZE == 4
 static const unsigned long lowmask  = 0x01010101;
 static const unsigned long highmask = 0x80808080;
-#elif defined(__x86_64__)
+#elif WORDSIZE == 8
 static const unsigned long lowmask  = 0x0101010101010101;
 static const unsigned long highmask = 0x8080808080808080;
 #else
@@ -41,7 +41,7 @@ size_t strlen(const char* str) {
 				return p - str + 2;
 			if (p[3] == 0)
 				return p - str + 3;
-#if defined(__x86_64__)
+#if WORDSIZE == 8
 			if (p[4] == 0)
 				return p - str + 4;
 			if (p[5] == 0)
