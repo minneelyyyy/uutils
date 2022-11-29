@@ -25,8 +25,8 @@ size_t strlen(const char* str) {
 		/*
 		 * (word - 0x01010101) & 0x80808080
 		 *
-		 * this is a simple equation to tell you if an ascii
-		 * character contains a zero byte.
+		 * this is a simple equation to tell you if 8 ascii
+		 * characters contains a zero byte.
 		 */
 		if ((*lp - lowmask) & highmask) {
 			/* we now have to check each individual byte to find out
@@ -58,11 +58,9 @@ size_t strlen(const char* str) {
 }
 
 int strequ(const char* str1, const char* str2) {
-	int i;
+	register size_t i;
 
-	if (strlen(str1) != strlen(str2)) return 0;
-
-	for (i = 0; i < strlen(str1); i++)
+	for (i = 0; str1[i] != 0; i++)
 		if (str1[i] != str2[i]) return 0;
 
 	return 1;
