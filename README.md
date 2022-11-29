@@ -11,24 +11,26 @@ to make this program yours.
 Read `LICENSE` for more information about copying.
 
 ### Compiling
-These programs can be compiled simply with `make`.
-This will build the programs in debug mode.
-If you want release, you will want to use `./release.sh`.
+There are a few options for this. The easiest way for a regular user is to use
+the `release.sh` script. You can run `make` directly. Do this if you wish for
+more control over compiler options.
 
-If you want other custom command line arguments there are three variables
-to remember: `EXTRAFLAGS`, `LINKERFLAGS`, and `OPTLEVEL`.
-
-`EXTRAFLAGS` gets passed to the compiler (specified with `CC`).
-`LINKERFLAGS` gets passed to the linker (specified with `LD`),
-and `OPTLEVEL` is just for the -O flag.
+If you are a developer, use the provided `debug.sh` script.
 
 ### How to Get the Smallest Binaries Possible
 Different combinations of compilers and linkers may provide the best possible
 binary sizes. For example, on my system clang produces the smallest objects
 and gcc can link them together and get the smallest executable.
 Try playing with different combinations on your system.
+
 `CC` specifies the compiler (source -> objects) and `LD` specifies
 linker (objects -> executables).
+
+In the example above, in order to get the smallest binaries on my machine, I would
+run the following:
+```sh
+$ ./release.sh CC=clang LD=gcc
+```
 
 ### Installing
 It might not be a good idea to replace system utilities with these in their
