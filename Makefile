@@ -10,7 +10,7 @@ all: $(PROGS)
 .c.o:
 	$(CC) $(CFLAGS) -nostdlib -nostdinc -c -Iinclude $< -o $@
 
-$(PROGS): src/$@.o $(OBJS)
+$(PROGS): $(OBJS) src/$@.o
 	$(LD) $(LDFLAGS) -nostdlib -o $@ src/$@.o $(OBJS)
 
 src/syscalls/syscalls.o:
