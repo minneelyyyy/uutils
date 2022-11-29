@@ -38,6 +38,5 @@ $ ./release.sh echo yes
 ```
 
 ### Installing
-It might not be a good idea to replace system utilities with these in their
-current state, because of this there is no `make install` option.
-Just copy files from `bin/` to your designated install location if you wish.
+I do not recommend installing these just yet. If you want to, you will have
+to install them all manually. Just copy the programs to your chosen install location.
