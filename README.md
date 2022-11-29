@@ -32,6 +32,11 @@ run the following:
 $ ./release.sh CC=clang LD=gcc
 ```
 
+If you want to compile a specific list of commands, just list them off.
+```sh
+$ ./release.sh echo yes
+```
+
 ### Installing
 It might not be a good idea to replace system utilities with these in their
 current state, because of this there is no `make install` option.
