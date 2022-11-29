@@ -41,7 +41,7 @@ $ ./release.sh echo yes
 I do not recommend installing these just yet. If you want to, you will have
 to install them all manually. Just copy the programs to your chosen install location.
 
-If you REALLY want to install these, the easist way would be to just one quick update
+If you REALLY want to install these, the easist way would be to make just one quick update
 to the Makefile. go to the $(PROGS) rule, and replace the following line.
 
 ```make
