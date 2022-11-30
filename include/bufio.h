@@ -3,31 +3,21 @@
 
 #include <defs.h>
 
-/* the structure itself */
-struct bufio {
+#define BUFIO_WCAPACITY 1024
+
+struct bufwriter {
 	int fd;
-	char* head;
-	char buffer[1024];
+	size_t buffer_size;
+	char buffer[BUFIO_WCAPACITY];
 };
 
 /* file control */
-void open_file(struct bufio* writer, int fd);
-void open_file_fs(struct bufio* writer, const char* name, int flags);
-void close_file(struct bufio* writer);
+void file_open_w(struct bufwriter* writer, const char* fname);
+void file_open_w_(struct bufwriter* writer, int fd);
+void file_close(struct bufwriter* writer);
 
 /* writing */
-void bufio_write(struct bufio* writer, void* buf, size_t sz);
-void bufio_puts(struct bufio* writer, const char* str);
-
-/* reading */
-void bufio_read(struct bufio* reader, void* buf, size_t sz);
-
-/* buffer control */
-void bufio_flush(struct bufio* writer);
-
-/* buffers opened by default */
-struct bufio* stdin;
-struct bufio* stdout;
-struct bufio* stderr;
+void b_write(struct bufwriter* writer, void* buf, size_t sz);
+void flush(struct bufwriter* writer);
 
 #endif
