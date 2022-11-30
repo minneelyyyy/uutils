@@ -20,4 +20,6 @@ void file_close(struct bufwriter* writer);
 void b_write(struct bufwriter* writer, void* buf, size_t sz);
 void flush(struct bufwriter* writer);
 
+#define b_puts(writer, s) b_write(writer, s, strlen(s))
+
 #endif
