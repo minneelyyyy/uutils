@@ -13,14 +13,14 @@ int main(int argc, char** argv) {
 
 	/* write all args! */
 	for (i = !show_newline + 1; i < argc - 1; i++) {
-		b_write(&stdout, argv[i], strlen(argv[i]));
-		b_write(&stdout, " ", strlen(" "));
+		b_puts(&stdout, argv[i]);
+		b_puts(&stdout, " ");
 	}
 
 	if (argc > 1 && show_newline)
-		b_write(&stdout, argv[i], strlen(argv[i]));
+		b_puts(&stdout, argv[i]);
 
-	if (show_newline) b_write(&stdout, "\n", strlen("\n"));
+	if (show_newline) b_puts(&stdout, "\n");
 
 	return 0;
 }
