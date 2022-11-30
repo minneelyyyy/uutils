@@ -17,14 +17,11 @@ void file_close(struct bufwriter* writer) {
 }
 
 void b_write(struct bufwriter* writer, void* buf, size_t sz) {
-	char* pos;
-
 	if (writer->buffer_size + sz >= BUFIO_WCAPACITY) {
 		flush(writer);
 	}
 
-	pos = writer->buffer + writer->buffer_size;
-	memcpy(pos, buf, sz);
+	memcpy(writer->buffer + writer->buffer_size, buf, sz);
 	writer->buffer_size += sz;
 
 	if (writer->buffer_size > 0 && writer->buffer[writer->buffer_size - 1] == '\n') {
