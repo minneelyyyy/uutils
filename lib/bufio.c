@@ -16,8 +16,6 @@ void file_close(struct bufwriter* writer) {
 	sys_close(writer->fd);
 }
 
-#define write_2(str) sys_write(2, str, strlen(str))
-
 void b_write(struct bufwriter* writer, void* buf, size_t sz) {
 	char* pos;
 
