@@ -1,5 +1,6 @@
 #include <common.h>
 #include <string.h>
+#include <bufio.h>
 
 int main(int argc, char** argv) {
 	int i;
@@ -10,14 +11,17 @@ int main(int argc, char** argv) {
 		}
 	}
 	else {
+		struct bufwriter stdout;
+		file_open_w_(&stdout, 1);
+
 		for (;;) {
 			for (i = 1; i < argc - 1; i++) {
-				sys_write(1, argv[i], strlen(argv[i]));
-				sys_write(1, " ", sizeof(" "));
+				b_puts(&stdout, argv[i]);
+				b_puts(&stdout, " ");
 			}
 
-			sys_write(1, argv[argc - 1], strlen(argv[argc - 1]));
-			sys_write(1, "\n", sizeof("\n"));
+			b_puts(&stdout, argv[argc - 1]);
+			b_puts(&stdout, "\n");
 		}
 	}
 
