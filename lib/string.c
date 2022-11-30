@@ -1,6 +1,12 @@
 #include <common.h>
 
-/* un-optimal strlen implementation. designed for size instead of speed. */
+/* These string functions are not designed to be as fast as possible.
+ * If I wanted to, I could write them all to check/copy up to 8 chars at a time,
+ * this makes them much faster but also much larger.
+ *
+ * We never work with very long strings in the first place, so these optimizations
+ * would not matter as much. */
+
 size_t strlen(const char* str) {
 	register size_t len = 0;
 
