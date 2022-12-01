@@ -17,13 +17,13 @@ void file_close(struct bufwriter* writer) {
 }
 
 void b_write(struct bufwriter* writer, void* buf, size_t sz) {
-	if (sz > BUFIO_WCAPACITY) {
+	if (sz > BUFWRITER_CAPACITY) {
 		flush(writer);
 		sys_write(writer->fd, buf, sz);
 		return;
 	}
 	
-	if (writer->buffer_size + sz > BUFIO_WCAPACITY) {
+	if (writer->buffer_size + sz > BUFWRITER_CAPACITY) {
 		flush(writer);
 	}
 

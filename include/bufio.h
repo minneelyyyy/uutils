@@ -3,12 +3,12 @@
 
 #include <defs.h>
 
-#define BUFIO_WCAPACITY 1024
+#define BUFWRITER_CAPACITY 1024
 
 struct bufwriter {
 	int fd;
 	size_t buffer_size;
-	char buffer[BUFIO_WCAPACITY];
+	char buffer[BUFWRITER_CAPACITY];
 };
 
 /* file control */
