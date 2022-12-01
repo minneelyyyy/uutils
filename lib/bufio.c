@@ -23,7 +23,7 @@ void b_write(struct bufwriter* writer, void* buf, size_t sz) {
 		return;
 	}
 	
-	if (writer->buffer_size + sz >= BUFIO_WCAPACITY) {
+	if (writer->buffer_size + sz > BUFIO_WCAPACITY) {
 		flush(writer);
 	}
 
