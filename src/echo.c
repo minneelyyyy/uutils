@@ -4,10 +4,11 @@
 
 int main(int argc, char** argv) {
 	int i;
-	int show_newline = 1;
+	bool show_newline = true;
 	struct bufwriter stdout;
 
-	if (argc > 1 && strequ(argv[1], "-n")) show_newline = 0;
+	if (argc > 1 && strequ(argv[1], "-n"))
+		show_newline = false;
 
 	file_open_w_(&stdout, 1);
 
