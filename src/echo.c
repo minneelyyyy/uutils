@@ -1,6 +1,7 @@
 #include <common.h>
 #include <bufio.h>
 #include <string.h>
+#include <bool.h>
 
 int main(int argc, char** argv) {
 	int i;
