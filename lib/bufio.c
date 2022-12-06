@@ -13,6 +13,7 @@ void file_open_w_(struct bufwriter* writer, int fd) {
 }
 
 void file_close(struct bufwriter* writer) {
+	flush(writer);
 	sys_close(writer->fd);
 }
 
