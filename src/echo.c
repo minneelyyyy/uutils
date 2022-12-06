@@ -6,23 +6,30 @@
 int main(int argc, char** argv) {
 	int i;
 	bool show_newline = true;
+	bool no_more_flags = false;
 	struct bufwriter stdout;
-
-	if (argc > 1 && strequ(argv[1], "-n"))
-		show_newline = false;
 
 	file_open_w_(&stdout, 1);
 
-	/* write all args! */
-	for (i = !show_newline + 1; i < argc - 1; i++) {
+	if (argc == 1) return 0;
+
+	for (i = 1; i < argc; i++) {
+		if (!no_more_flags && argv[i][0] == '-') {
+			if (strequ(argv[i], "-n"))
+				show_newline = false;
+
+			continue;
+		} else {
+			no_more_flags = true;
+		}
+
 		b_puts(&stdout, argv[i]);
-		b_puts(&stdout, " ");
+		if (i + 1 < argc)
+			b_puts(&stdout, " ");
 	}
 
-	if (argc > 1 && show_newline)
-		b_puts(&stdout, argv[i]);
-
 	if (show_newline) b_puts(&stdout, "\n");
+	else flush(&stdout);
 
 	return 0;
 }
