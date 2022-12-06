@@ -1,15 +1,15 @@
 #include <common.h>
 #include <bufio.h>
 
+/* getargs() macros only work inside of start,
+ * and should be the first bit of code run */
 #if defined(__i386__)
-/* warning: only use inside of _start */
 #	define getargs(argc, argv)					\
 		do {							\
 			asm("movl 0x4(%%ebp), %0" : "=r" (argc));	\
 			asm("leal 0x8(%%ebp), %0" : "=r" (argv));	\
 		} while (0)
 #elif defined(__x86_64__)
-/* warning: only use inside of _start, run before any other code */
 #	define getargs(argc, argv)				\
 		do {						\
 			asm("movl (%%rdi), %0" : "=r" (argc));	\
