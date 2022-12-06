@@ -11,8 +11,6 @@ int main(int argc, char** argv) {
 
 	file_open_w_(&stdout, 1);
 
-	if (argc == 1) return 0;
-
 	for (i = 1; i < argc; i++) {
 		if (!no_more_flags && argv[i][0] == '-') {
 			if (strequ(argv[i], "-n"))
