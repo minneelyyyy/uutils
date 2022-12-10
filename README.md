@@ -28,12 +28,12 @@ linker (objects -> executables).
 
 In the example above, in order to get the smallest binaries on my machine, I would
 run the following:
-```sh
+```
 $ ./release.sh CC=clang LD=gcc
 ```
 
 If you want to compile a specific list of commands, just list them off.
-```sh
+```
 $ ./release.sh echo yes
 ```
 
