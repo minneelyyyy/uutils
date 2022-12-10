@@ -6,8 +6,8 @@
 #if defined(__i386__)
 #	define getargs(argc, argv)					\
 		do {							\
-			asm("movl 0x4(%%ebp), %0" : "=r" (argc));	\
-			asm("leal 0x8(%%ebp), %0" : "=r" (argv));	\
+			asm("movl 4(%%ebp), %0" : "=r" (argc));		\
+			asm("leal 8(%%ebp), %0" : "=r" (argv));		\
 		} while (0)
 #elif defined(__x86_64__)
 #	define getargs(argc, argv)				\
