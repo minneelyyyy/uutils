@@ -15,6 +15,7 @@
 			asm("movl (%%rdi), %0" : "=r" (argc));	\
 			asm("leaq 8(%%rdi), %0" : "=r" (argv));	\
 		} while (0)
+#else
 #error "only x86 and x86_64 are supported"
 #endif
 
