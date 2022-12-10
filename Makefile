@@ -1,20 +1,28 @@
 
-PROGS=echo true false yes
+PROGS=echo yes
+SIMPLE_PROGS=true false
 OBJS=src/_start.o lib/syscalls/syscalls.o lib/string.o lib/bufio.o
+SIMPLE_OBJS=lib/syscalls/syscalls.o lib/string.o
 
-.SUFFIXES: .c .o
+.SUFFIXES: .c .s .o
 .PHONY: all clean
 
-all: $(PROGS)
+all: $(PROGS) $(SIMPLE_PROGS)
 
 .c.o:
 	$(CC) $(CFLAGS) -nostdlib -nostdinc -c -Iinclude $< -o $@
 
+.s.o:
+	$(AS) $(ASFLAGS) -o $@ $<
+
 $(PROGS): $(OBJS) src/$@.o
 	$(LD) $(LDFLAGS) -nostdlib -o $@ src/$@.o $(OBJS)
+
+$(SIMPLE_PROGS): $(SIMPLE_OBJS) src/$@.o
+	$(LD) $(LDFLAGS) -nostdlib -o $@ src/$@.o $(SIMPLE_OBJS)
 
 lib/syscalls/syscalls.o:
 	$(AS) $(ASFLAGS) -o $@ lib/syscalls/syscalls_`uname -m`.s
 
 clean:
-	rm -r -f $(PROGS) `find . -name '*.o'`
+	rm -r -f $(PROGS) $(SIMPLE_PROGS) `find . -name '*.o'`

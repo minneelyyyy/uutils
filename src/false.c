@@ -1,5 +1,5 @@
-#include <common.h>
+#include <syscalls.h>
 
-int main(int argc, char** argv) {
-	return 1;
+void _start(void) {
+	sys_exit(1);
 }
