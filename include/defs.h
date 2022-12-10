@@ -6,14 +6,30 @@
 typedef unsigned int size_t;
 typedef signed int ssize_t;
 
-#define WORDSIZE 4
+#define WORDSIZE 2
+#define WORD short
+#define DWORDSIZE 4
+#define DWORD int
+#define MAXWORDSIZE DWORDSIZE
+#define MAXWORD DWORD
+
 #define LITTLE_ENDIAN
+
 #elif defined(__x86_64)
 typedef unsigned long size_t;
 typedef signed long ssize_t;
 
-#define WORDSIZE 8
+#define WORDSIZE 2
+#define WORD short
+#define DWORDSIZE 4
+#define DWORD int
+#define QWORDSIZE 8
+#define QWORD long
+#define MAXWORDSIZE QWORDSIZE
+#define MAXWORD QWORD
+
 #define LITTLE_ENDIAN
-#endif
+
+#endif /* defined(__x86_64) */
 
 #endif /* __DEFS_H */
