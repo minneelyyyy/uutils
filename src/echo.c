@@ -15,12 +15,14 @@ int main(int argc, char** argv) {
 		if (!no_more_flags && argv[i][0] == '-') {
 			if (strequ(argv[i], "-n"))
 				show_newline = false;
+			else
+				goto just_print;
 
-			continue;
 		} else {
 			no_more_flags = true;
 		}
 
+just_print:
 		b_puts(&stdout, argv[i]);
 		if (i + 1 < argc)
 			b_puts(&stdout, " ");
