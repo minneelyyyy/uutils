@@ -4,6 +4,12 @@ sys_exit:
 	mov $1, %rax
 	syscall
 
+.global sys_read
+sys_read:
+	mov $3, %rax
+	syscall
+	ret
+
 .global sys_write
 sys_write:
 	mov $4, %rax
@@ -27,4 +33,3 @@ sys_fcntl:
 	mov $92, %rax
 	syscall
 	ret
-
