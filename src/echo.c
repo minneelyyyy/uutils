@@ -16,10 +16,19 @@ int main(int argc, char** argv) {
 	}
 
 	for (; i < argc; i++) {
-		b_puts(&stdout, argv[i]);
 
-		if (i + 1 < argc)
+		if (i + 1 < argc) {
+			b_puts(&stdout, argv[i]);
 			b_puts(&stdout, " ");
+		} else {
+			size_t len = strlen(argv[i]);
+
+			if (len > 2 && argv[i][len - 2] == '\\'
+			&& argv[i][len - 1] == 'c')
+				show_newline = false;
+
+			b_write(&stdout, argv[i], len - 2);
+		}
 	}
 
 	if (show_newline) b_puts(&stdout, "\n");
