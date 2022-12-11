@@ -4,6 +4,12 @@ sys_exit:
 	mov $1, %eax
 	int $0x80
 
+.global sys_read
+sys_read:
+	mov $3, %eax
+	int $0x80
+	ret
+
 .global sys_write
 sys_write:
 	mov $4, %eax

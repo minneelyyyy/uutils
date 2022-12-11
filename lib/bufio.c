@@ -3,7 +3,7 @@
 #include <string.h>
 
 void file_open_w(struct bufwriter* writer, const char* fname) {
-	int fd = sys_open(fname, O_WRONLY | O_CREAT);
+	int fd = sys_open(fname, O_WRONLY | O_CREAT, S_IRWXU | S_IRWXG | S_IROTH);
 	file_open_w_(writer, fd);
 }
 

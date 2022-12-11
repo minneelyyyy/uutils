@@ -32,4 +32,10 @@ typedef signed long ssize_t;
 
 #endif /* defined(__x86_64) */
 
+#define STDIN_FILENO 0
+#define STDOUT_FILENO 1
+#define STDERR_FILENO 2
+
+#define EOF (-1)
+
 #endif /* __DEFS_H */

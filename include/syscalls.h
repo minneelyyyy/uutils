@@ -5,7 +5,8 @@
 
 void sys_exit(int qval);
 
-ssize_t sys_write(int fd, void* buf, size_t sz);
+ssize_t sys_read(int fd, void* buf, size_t sz);
+ssize_t sys_write(int fd, const void* buf, size_t sz);
 
 #define O_RDONLY        0x0
 #define O_WRONLY        0x1
@@ -28,6 +29,20 @@ ssize_t sys_write(int fd, void* buf, size_t sz);
 #define O_DIRECTORY     0x20000
 #define O_CLOEXEC       0x100000
 #define O_VERIFY        0x200000
+
+#define S_IRWXU		0x700
+#define S_IRUSR		0x400
+#define S_IWUSR		0x200
+#define S_IXUSR		0x100
+#define S_IRWXG		0x070
+#define S_IRGRP		0x040
+#define S_IWGRP		0x020
+#define S_IXGRP		0x010
+#define S_IRWXO		0x007
+#define S_IROTH		0x004
+#define S_IWOTH		0x002
+#define S_IXOTH		0x001
+
 int sys_open(const char* path, int flags, ...);
 
 int sys_close(int fd);

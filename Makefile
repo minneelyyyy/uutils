@@ -1,5 +1,5 @@
 
-PROGS=echo yes
+PROGS=echo yes cat
 SIMPLE_PROGS=true false
 OBJS=src/_start.o lib/syscalls/syscalls.o lib/string.o lib/bufio.o
 SIMPLE_OBJS=lib/syscalls/syscalls.o lib/string.o
