@@ -16,7 +16,6 @@ int main(int argc, char** argv) {
 	}
 
 	for (; i < argc; i++) {
-
 		if (i + 1 < argc) {
 			b_puts(&stdout, argv[i]);
 			b_puts(&stdout, " ");
