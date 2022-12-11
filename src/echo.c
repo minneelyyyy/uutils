@@ -23,9 +23,9 @@ int main(int argc, char** argv) {
 			size_t len = strlen(argv[i]);
 
 			if (len >= 2 &&
-				argv[i][len - 2] == '\\' &&
-				argv[i][len - 1] == 'c')
-					show_newline = false;
+			    argv[i][len - 2] == '\\' &&
+			    argv[i][len - 1] == 'c')
+				show_newline = false;
 
 			b_write(&stdout, argv[i], len - 2);
 		}
