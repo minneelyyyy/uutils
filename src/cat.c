@@ -2,9 +2,6 @@
 #include <string.h>
 #include <bool.h>
 
-extern int * __error();
-#define errno (*__error())
-
 void write_file(int fd, unsigned int flags) {
 	char buffer[4096];
 	size_t sz;
@@ -47,7 +44,7 @@ int main(int argc, char** argv) {
 		if (fd < 3) {
 			const char* errmessage = "error: failed to open file\n";
 			sys_write(STDERR_FILENO, errmessage, strlen(errmessage));
-			return errno;
+			return 1;
 		}
 
 		write_file(fd, wf_flags);
