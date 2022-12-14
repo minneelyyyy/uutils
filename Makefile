@@ -1,8 +1,8 @@
 
 PROGS=echo yes cat
 SIMPLE_PROGS=true false
-OBJS=src/_start.o lib/syscalls/syscalls.o lib/string.o lib/bufio.o
-SIMPLE_OBJS=lib/syscalls/syscalls.o lib/string.o
+OBJS=src/_start.o lib/syscalls/syscalls.o lib/string.o lib/bufio.o lib/errno.o
+SIMPLE_OBJS=lib/syscalls/syscalls.o lib/string.o lib/errno.o
 
 .SUFFIXES: .c .s .o
 .PHONY: all clean

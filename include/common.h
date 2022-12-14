@@ -4,4 +4,6 @@
 #include <defs.h>
 #include <syscalls.h>
 
+int get_carry_bit(void);
+
 #endif /* __COMMON_H */
