@@ -1,3 +1,3 @@
 #!/bin/sh
 
-make CFLAGS="-O0 -g" LDFLAGS="-g" $@
+make CFLAGS="-O0 -g" LDFLAGS="-g" ASFLAGS="-g" $@
