@@ -9,10 +9,10 @@ sys_exit:
 sys_read:
 	mov $3, %eax
 	int $0x80
-	jc .read_error
+	jc 1f
 	ret
 
-	.read_error:
+	1:
 	mov %eax, errno
 	mov $0xFFFFFFFF, %eax
 	ret
@@ -21,10 +21,10 @@ sys_read:
 sys_write:
 	mov $4, %eax
 	int $0x80
-	jc .write_error
+	jc 1f
 	ret
 
-	.write_error:
+	1:
 	mov %eax, errno
 	mov $0xFFFFFFFF, %eax
 	ret
@@ -33,10 +33,10 @@ sys_write:
 sys_open:
 	mov $5, %eax
 	int $0x80
-	jc .open_error
+	jc 1f
 	ret
 
-	.open_error:
+	1:
 	mov %eax, errno
 	mov $0xFFFFFFFF, %eax
 	ret
@@ -45,10 +45,10 @@ sys_open:
 sys_close:
 	mov $6, %eax
 	int $0x80
-	jc .close_error
+	jc 1f
 	ret
 
-	.close_error:
+	1:
 	mov %eax, errno
 	mov $0xFFFFFFFF, %eax
 	ret

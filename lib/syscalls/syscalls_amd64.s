@@ -8,6 +8,12 @@ sys_exit:
 sys_read:
 	mov $3, %rax
 	syscall
+	jc 1f
+	ret
+
+	1:
+	mov %eax, errno
+	mov $0xFFFFFFFFFFFFFFFF, %eax
 	ret
 
 .global sys_write
@@ -16,10 +22,20 @@ sys_write:
 	syscall
 	ret
 
+	1:
+	mov %eax, errno
+	mov $0xFFFFFFFFFFFFFFFF, %eax
+	ret
+
 .global sys_open
 sys_open:
 	mov $5, %rax
 	syscall
+	ret
+
+	1:
+	mov %eax, errno
+	mov $0xFFFFFFFFFFFFFFFF, %eax
 	ret
 
 .global sys_close
@@ -28,8 +44,8 @@ sys_close:
 	syscall
 	ret
 
-.global sys_fcntl
-sys_fcntl:
-	mov $92, %rax
-	syscall
+	1:
+	mov %eax, errno
+	mov $0xFFFFFFFFFFFFFFFF, %eax
 	ret
+
