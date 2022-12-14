@@ -39,9 +39,7 @@ int main(int argc, char** argv) {
 
 		fd = sys_open(argv[i], O_RDONLY);
 
-		/* weird bug where passing a non-existing file to sys_open returns 2 instead of -1.
-		 * here is a temporary fix, since 0, 1, and 2 will always be taken anyway. */
-		if (fd < 3) {
+		if (fd < 0) {
 			const char* errmessage = "error: failed to open file\n";
 			sys_write(STDERR_FILENO, errmessage, strlen(errmessage));
 			return 1;
