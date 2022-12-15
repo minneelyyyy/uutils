@@ -4,9 +4,10 @@ sys_exit:
 	mov $1, %rax
 	syscall
 
-.global sys_read
-sys_read:
-	mov $3, %rax
+.macro define_syscall name,num
+.global \name
+\name:
+	mov $\num, %rax
 	syscall
 	jc 1f
 	ret
@@ -15,37 +16,9 @@ sys_read:
 	mov %eax, errno
 	mov $0xFFFFFFFFFFFFFFFF, %eax
 	ret
+.endm
 
-.global sys_write
-sys_write:
-	mov $4, %rax
-	syscall
-	ret
-
-	1:
-	mov %eax, errno
-	mov $0xFFFFFFFFFFFFFFFF, %eax
-	ret
-
-.global sys_open
-sys_open:
-	mov $5, %rax
-	syscall
-	ret
-
-	1:
-	mov %eax, errno
-	mov $0xFFFFFFFFFFFFFFFF, %eax
-	ret
-
-.global sys_close
-sys_close:
-	mov $6, %rax
-	syscall
-	ret
-
-	1:
-	mov %eax, errno
-	mov $0xFFFFFFFFFFFFFFFF, %eax
-	ret
-
+DEFINE_SYSCALL sys_read,2
+DEFINE_SYSCALL sys_write,3
+DEFINE_SYSCALL sys_open,4
+DEFINE_SYSCALL sys_close,5
