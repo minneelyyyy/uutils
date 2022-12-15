@@ -4,7 +4,7 @@
 
 void write_file(int fd, unsigned int flags) {
 	char buffer[4096];
-	size_t sz;
+	ssize_t sz;
 
 	for (;;) {
 		sz = sys_read(fd, buffer, sizeof(buffer));
