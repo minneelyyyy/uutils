@@ -1,3 +1,4 @@
+.extern errno
 
 .global sys_exit
 sys_exit:
