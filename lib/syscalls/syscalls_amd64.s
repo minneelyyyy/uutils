@@ -19,7 +19,4 @@ sys_exit:
 	ret
 .endm
 
-DEFINE_SYSCALL sys_read,2
-DEFINE_SYSCALL sys_write,3
-DEFINE_SYSCALL sys_open,4
-DEFINE_SYSCALL sys_close,5
+.include "lib/syscalls/tbl.s"
