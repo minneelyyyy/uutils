@@ -24,10 +24,12 @@ int main(int argc, char** argv) {
 
 			if (len >= 2 &&
 			    argv[i][len - 2] == '\\' &&
-			    argv[i][len - 1] == 'c')
+			    argv[i][len - 1] == 'c') {
 				show_newline = false;
+				len -= 2;
+			}
 
-			b_write(&stdout, argv[i], len - 2);
+			b_write(&stdout, argv[i], len);
 		}
 	}
 
