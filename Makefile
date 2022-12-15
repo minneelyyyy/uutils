@@ -25,4 +25,4 @@ lib/syscalls/syscalls.o:
 	$(AS) $(ASFLAGS) -o $@ lib/syscalls/syscalls_`uname -m`.s
 
 clean:
-	rm -r -f $(PROGS) $(SIMPLE_PROGS) `find . -name '*.o'`
+	rm -r -f $(PROGS) $(SIMPLE_PROGS) `find . -name '*.o' -o -name '*.core'`
