@@ -5,7 +5,7 @@ sys_exit:
 	mov $1, %rax
 	syscall
 
-.macro define_syscall name,num
+.macro define_syscall name, num
 .global \name
 \name:
 	mov $\num, %rax
